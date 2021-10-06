@@ -46,3 +46,8 @@ id(PK)
 menu_id(FK references menus id)
 sales(array of objects with key of meal_name references menus meal_name and value of amount_sold)
 
+
+
+## Referenced code
+Code and tutorials referenced in the making of our project.
+#### Understanding how to upload files <https://www.pluralsight.com/guides/uploading-files-with-reactjs>
