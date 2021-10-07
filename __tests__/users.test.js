@@ -29,9 +29,22 @@ describe('Bienventory-be users routes', () => {
       google_id: '12345',
       notifications: true,
     };
-    const user = await User.insert(newUser)
+    const user = await User.insert(newUser);
     const res = await request(app).get(`/api/v1/users/${user.google_id}`);
 
     expect(res.body).toEqual(user);
-  })
+  });
+
+  it.skip('updates a users notification preference with PUT', async () => {
+    const newUser = {
+      google_id: '12345',
+      notifications: true,
+    };
+    const user = await User.insert(newUser);
+    const res = await request(app)
+      .put(`/api/v1/users/${user.google_id}`)
+      .send({ notifications: false });
+
+    expect(res.body).toEqual({ google_id: '12345', notifications: false });
+  });
 });
