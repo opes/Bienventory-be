@@ -35,7 +35,7 @@ describe('Bienventory-be users routes', () => {
     expect(res.body).toEqual(user);
   });
 
-  it.skip('updates a users notification preference with PUT', async () => {
+  it('updates a users notification preference with PUT', async () => {
     const newUser = {
       google_id: '12345',
       notifications: true,
