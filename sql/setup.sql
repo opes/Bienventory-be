@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS inventory CASCADE;
 DROP TABLE IF EXISTS menus CASCADE;
+DROP TABLE IF EXISTS inventory_menus CASCADE;
 DROP TABLE IF EXISTS sales CASCADE;
 
 CREATE TABLE users(
@@ -23,7 +24,11 @@ CREATE TABLE menus(
     inventory_id BIGINT REFERENCES inventory(id),
     meal_name TEXT NOT NULL unique,
     ingredients TEXT [] NOT NULL
+);
 
+CREATE TABLE inventory_menus(
+    inventory_id BIGINT REFERENCES inventory(id),
+    menus_id BIGINT REFERENCES menus(id)
 );
 
 CREATE TABLE sales(
