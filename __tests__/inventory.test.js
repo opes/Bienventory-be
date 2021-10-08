@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool.js');
 const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
+const Inventory = require('../lib/models/Inventory.js');
 const User = require('../lib/models/Users.js');
 
 describe('Bienventory-be inventory routes', () => {
@@ -33,6 +34,10 @@ it('creating a new inventory item with POST', async () => {
 });
 
 it('gets an inventory item by id', async () => {
+    const newUser = User.insert({
+        google_id: '12345',
+        notifications: true,
+      });
     const newItem = {
         user_id: '12345',
         item_name: 'milk',
