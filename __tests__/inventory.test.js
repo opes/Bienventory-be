@@ -91,4 +91,48 @@ describe('Bienventory-be inventory routes', () => {
 
     expect(res.body).toEqual([item1, item2, item3]);
   });
+
+  it('updates an inventory item by id with PUT', async () => {
+    await User.insert({
+      google_id: '12345',
+      notifications: true,
+    });
+
+    const item1 = await Inventory.insert({
+      user_id: '12345',
+      item_name: 'milk',
+      description: 'its milk',
+      total_on_hand: 4,
+      par: 2,
+      unit_type: 'gallons',
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/inventory/${item1.id}`)
+      .send({ total_on_hand: 3 });
+
+    expect(res.body).toEqual({ ...item1, total_on_hand: 3 });
+  });
+
+  it('updates an inventory item by id with PUT', async () => {
+    await User.insert({
+      google_id: '12345',
+      notifications: true,
+    });
+
+    const item1 = await Inventory.insert({
+      user_id: '12345',
+      item_name: 'milk',
+      description: 'its milk',
+      total_on_hand: 4,
+      par: 2,
+      unit_type: 'gallons',
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/inventory/${item1.id}`)
+      .send({ description: 'whole milk from Belmont Dairy', par: 1 });
+
+    expect(res.body).toEqual({ ...item1, description: 'whole milk from Belmont Dairy', par: 1 });
+  });
 });
