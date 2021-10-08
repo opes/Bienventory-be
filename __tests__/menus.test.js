@@ -6,7 +6,7 @@ const Inventory = require('../lib/models/Inventory.js');
 const User = require('../lib/models/Users.js');
 const Menu = require('../lib/models/Menu.js');
 
-describe('Bienventory-be inventory routes', () => {
+describe('Bienventory-be menus routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
