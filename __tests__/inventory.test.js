@@ -14,41 +14,81 @@ describe('Bienventory-be inventory routes', () => {
     pool.end();
   });
 
-it('creating a new inventory item with POST', async () => {
-    const newUser = User.insert({
-        google_id: '12345',
-        notifications: true,
-      });
+  it('creating a new inventory item with POST', async () => {
+    await User.insert({
+      google_id: '12345',
+      notifications: true,
+    });
     const newItem = {
-        user_id: '12345',
-        item_name: 'milk',
-        description: 'its milk',
-        total_on_hand: 4,
-        par: 2,
-        unit_type: 'gallons'
+      user_id: '12345',
+      item_name: 'milk',
+      description: 'its milk',
+      total_on_hand: 4,
+      par: 2,
+      unit_type: 'gallons',
     };
 
     const res = await request(app).post('/api/v1/inventory').send(newItem);
 
     expect(res.body).toEqual({ id: '1', ...newItem });
-});
+  });
 
-it('gets an inventory item by id', async () => {
-    const newUser = User.insert({
-        google_id: '12345',
-        notifications: true,
-      });
+  it('gets an inventory item by id', async () => {
+    await User.insert({
+      google_id: '12345',
+      notifications: true,
+    });
     const newItem = {
-        user_id: '12345',
-        item_name: 'milk',
-        description: 'its milk',
-        total_on_hand: 4,
-        par: 2,
-        unit_type: 'gallons'
+      user_id: '12345',
+      item_name: 'milk',
+      description: 'its milk',
+      total_on_hand: 4,
+      par: 2,
+      unit_type: 'gallons',
     };
 
     const newInventoryItem = await Inventory.insert(newItem);
-    const res = await request(app).get(`/api/v1/inventory/${newInventoryItem.id}`);
+    const res = await request(app).get(
+      `/api/v1/inventory/${newInventoryItem.id}`
+    );
     expect(res.body).toEqual(newInventoryItem);
-})
-})
+  });
+
+  it('gets all inventory items using GET', async () => {
+    await User.insert({
+      google_id: '12345',
+      notifications: true,
+    });
+
+    const item1 = await Inventory.insert({
+      user_id: '12345',
+      item_name: 'milk',
+      description: 'its milk',
+      total_on_hand: 4,
+      par: 2,
+      unit_type: 'gallons',
+    });
+
+    const item2 = await Inventory.insert({
+      user_id: '12345',
+      item_name: 'potatoes',
+      description: 'wots taters precious',
+      total_on_hand: 10,
+      par: 50,
+      unit_type: 'pounds',
+    });
+
+    const item3 = await Inventory.insert({
+      user_id: '12345',
+      item_name: 'bacon',
+      description: 'thick cut from hilshire farms',
+      total_on_hand: 4,
+      par: 10,
+      unit_type: 'pounds',
+    });
+
+    const res = await request(app).get('/api/v1/inventory');
+
+    expect(res.body).toEqual([item1, item2, item3]);
+  });
+});
