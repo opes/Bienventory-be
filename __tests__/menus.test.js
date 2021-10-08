@@ -119,20 +119,20 @@ describe('Bienventory-be menus routes', () => {
         { name: 'butter', quantity: 1 / 4 },
       ],
     });
-    const res = await (
-      await request(app).put(`/api/v1/menus/${hashbrowns.id}`)
-    ).send({
-      ingredients: [
-        { name: 'potatoes', quantity: 1 / 2 },
-        { name: 'butter', quantity: 1 / 5 },
-      ],
-    });
+    const res = await await request(app)
+      .put(`/api/v1/menus/${hashbrowns.id}`)
+      .send({
+        ingredients: [
+          { name: 'potatoes', quantity: 1 / 2 },
+          { name: 'butter', quantity: 1 / 5 },
+        ],
+      });
     expect(res.body).toEqual({
       ...hashbrowns,
       ingredients: [
-        { name: 'potatoes', quantity: 1 / 2 },
-        { name: 'butter', quantity: 1 / 5 },
-      ]
+        JSON.stringify({ name: 'potatoes', quantity: 1 / 2 }),
+        JSON.stringify({ name: 'butter', quantity: 1 / 5 }),
+      ],
     });
   });
 });
