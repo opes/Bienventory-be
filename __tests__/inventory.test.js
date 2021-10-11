@@ -18,6 +18,7 @@ describe('Bienventory-be inventory routes', () => {
     await User.insert({
       google_id: '12345',
       notifications: true,
+      phone_number: '+15038675309'
     });
     const newItem = {
       user_id: '12345',
@@ -37,6 +38,7 @@ describe('Bienventory-be inventory routes', () => {
     await User.insert({
       google_id: '12345',
       notifications: true,
+      phone_number: '+15038675309'
     });
     const newItem = {
       user_id: '12345',
@@ -58,6 +60,7 @@ describe('Bienventory-be inventory routes', () => {
     await User.insert({
       google_id: '12345',
       notifications: true,
+      phone_number: '+15038675309'
     });
 
     const item1 = await Inventory.insert({
@@ -96,6 +99,7 @@ describe('Bienventory-be inventory routes', () => {
     await User.insert({
       google_id: '12345',
       notifications: true,
+      phone_number: '+15038675309'
     });
 
     const item1 = await Inventory.insert({
@@ -118,6 +122,7 @@ describe('Bienventory-be inventory routes', () => {
     await User.insert({
       google_id: '12345',
       notifications: true,
+      phone_number: '+15038675309'
     });
 
     const item1 = await Inventory.insert({
@@ -144,6 +149,7 @@ describe('Bienventory-be inventory routes', () => {
     await User.insert({
       google_id: '12345',
       notifications: true,
+      phone_number: '+15038675309'
     });
 
     const item1 = await Inventory.insert({

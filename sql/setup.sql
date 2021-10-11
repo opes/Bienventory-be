@@ -6,7 +6,8 @@ DROP TABLE IF EXISTS sales CASCADE;
 
 CREATE TABLE users(
     google_id TEXT NOT NULL UNIQUE,
-    notifications BOOLEAN NOT NULL
+    notifications BOOLEAN NOT NULL,
+    phone_number TEXT
 );
 
 CREATE TABLE inventory(
@@ -29,6 +30,11 @@ CREATE TABLE menus(
 CREATE TABLE inventory_menus(
     inventory_id BIGINT REFERENCES inventory(id),
     menus_id BIGINT REFERENCES menus(id)
+);
+
+CREATE TABLE menus_sales(
+    menus_id BIGINT REFERENCES menus(id),
+    sales_id BIGINT REFERENCES sales(id)
 );
 
 CREATE TABLE sales(

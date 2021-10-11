@@ -19,6 +19,7 @@ describe('Bienventory-be menus routes', () => {
     await User.insert({
       google_id: '12345',
       notifications: true,
+      phone_number: '+15038675309'
     });
     await Inventory.insert({
       user_id: '12345',
@@ -61,6 +62,7 @@ describe('Bienventory-be menus routes', () => {
     await User.insert({
       google_id: '12345',
       notifications: true,
+      phone_number: '+15038675309'
     });
     await Inventory.insert({
       user_id: '12345',
@@ -94,6 +96,7 @@ describe('Bienventory-be menus routes', () => {
     await User.insert({
       google_id: '12345',
       notifications: true,
+      phone_number: '+15038675309'
     });
     await Inventory.insert({
       user_id: '12345',
