@@ -32,11 +32,6 @@ CREATE TABLE inventory_menus(
     menus_id BIGINT REFERENCES menus(id)
 );
 
-CREATE TABLE menus_sales(
-    menus_id BIGINT REFERENCES menus(id),
-    sales_id BIGINT REFERENCES sales(id)
-);
-
 CREATE TABLE sales(
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     menu_id BIGINT REFERENCES menus(id),

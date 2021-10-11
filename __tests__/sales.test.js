@@ -18,45 +18,45 @@ describe('Bienventory-be menus routes', () => {
     pool.end();
   });
 
-  it('posts new sales data, updates inventory, and sends a text', async () => {
+  it.skip('posts new sales data, updates inventory, and sends a text', async () => {
     const newUser = {
-        google_id: '12345',
-        notifications: true,
-        phone_number: '+15038675309'
-      };
-      await Inventory.insert({
-        user_id: '12345',
-        item_name: 'potatoes',
-        description: 'wots taters precious',
-        total_on_hand: 10,
-        par: 50,
-        unit_type: 'pounds',
-      });
-      await Inventory.insert({
-        user_id: '12345',
-        item_name: 'butter',
-        description: 'unsalted butter',
-        total_on_hand: 30,
-        par: 4,
-        unit_type: 'pounds',
-      });
-      const hashbrowns = {
-        inventory_id: '1',
-        meal_name: 'hashbrowns',
-        ingredients: [
-          { name: 'potatoes', quantity: 1 },
-          { name: 'butter', quantity: 1 / 4 },
-        ],
-      };
-      const sales = {
-          menu_id: '1',
-          sales: [{ name: 'hashbrowns', quantity: 2 }]
-      }
-      const res = await request(app).post('/api/v1/sales').send(sales);
-      expect(twilio.sendText).toHaveBeenCalledTimes(1);
-      expect(res.body).toEqual({
-          id: '1',
-          ...sales
-      })
-  })
-})
+      google_id: '12345',
+      notifications: true,
+      phone_number: '+15038675309',
+    };
+    await Inventory.insert({
+      user_id: '12345',
+      item_name: 'potatoes',
+      description: 'wots taters precious',
+      total_on_hand: 10,
+      par: 50,
+      unit_type: 'pounds',
+    });
+    await Inventory.insert({
+      user_id: '12345',
+      item_name: 'butter',
+      description: 'unsalted butter',
+      total_on_hand: 30,
+      par: 4,
+      unit_type: 'pounds',
+    });
+    const hashbrowns = {
+      inventory_id: '1',
+      meal_name: 'hashbrowns',
+      ingredients: [
+        { name: 'potatoes', quantity: 1 },
+        { name: 'butter', quantity: 1 / 4 },
+      ],
+    };
+    const sales = {
+      menu_id: '1',
+      sales: [{ name: 'hashbrowns', quantity: 2 }],
+    };
+    const res = await request(app).post('/api/v1/sales').send(sales);
+    expect(twilio.sendText).toHaveBeenCalledTimes(1);
+    expect(res.body).toEqual({
+      id: '1',
+      ...sales,
+    });
+  });
+});
