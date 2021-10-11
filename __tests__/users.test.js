@@ -17,6 +17,7 @@ describe('Bienventory-be users routes', () => {
     const newUser = {
       google_id: '12345',
       notifications: true,
+      phone_number: '+15038675309'
     };
 
     const res = await request(app).post('/api/v1/users').send(newUser);
@@ -28,6 +29,7 @@ describe('Bienventory-be users routes', () => {
     const newUser = {
       google_id: '12345',
       notifications: true,
+      phone_number: '+15038675309'
     };
     const user = await User.insert(newUser);
     const res = await request(app).get(`/api/v1/users/${user.google_id}`);
@@ -39,12 +41,13 @@ describe('Bienventory-be users routes', () => {
     const newUser = {
       google_id: '12345',
       notifications: true,
+      phone_number: '+15038675309'
     };
     const user = await User.insert(newUser);
     const res = await request(app)
       .put(`/api/v1/users/${user.google_id}`)
       .send({ notifications: false });
 
-    expect(res.body).toEqual({ google_id: '12345', notifications: false });
+    expect(res.body).toEqual({ google_id: '12345', notifications: false, phone_number: '+15038675309' });
   });
 });
