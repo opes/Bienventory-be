@@ -6,6 +6,7 @@ const Inventory = require('../lib/models/Inventory.js');
 const User = require('../lib/models/Users.js');
 const Menu = require('../lib/models/Menu.js');
 const twilio = require('../lib/utils/twilio.js');
+const Sale = require('../lib/models/Sale.js');
 
 jest.mock('../lib/utils/twilio.js');
 
@@ -18,7 +19,7 @@ describe('Bienventory-be menus routes', () => {
     pool.end();
   });
 
-  it.skip('posts new sales data, updates inventory, and sends a text', async () => {
+  it('posts new sales data, updates inventory, and sends a text', async () => {
     const newUser = {
       google_id: '12345',
       notifications: true,
@@ -50,22 +51,26 @@ describe('Bienventory-be menus routes', () => {
       ],
     });
     const mashedPotatoes = await Menu.insert({
-      inventory_id: '1',
+      inventory_id: '2',
       meal_name: 'mashedpotatoes',
       ingredients: [
         { name: 'potatoes', quantity: 1 },
         { name: 'butter', quantity: 1 / 4 },
       ],
     });
-    const sales = {
+    let sales = {
       menu_id: '1',
       sales: [{ name: 'hashbrowns', quantity: '2' }, { name: 'mashedpotatoes', quantity: '3' }],
     };
+    // salesData1 = JSON.parse(sales.sales[0]);
+    // salesData2 = JSON.parse(sales.sales[1]);
+    // salesData = [ salesData1, salesData2 ];
+    // sales = { ...sales, sales: salesData }
     const res = await request(app).post('/api/v1/sales').send(sales);
+    const butter = await Inventory.getById('2');
+    const potatoes = await Inventory.getById('1');
     // expect(twilio.sendText).toHaveBeenCalledTimes(1);
-    expect(res.body).toEqual({
-      id: '1',
-      ...sales,
-    });
+    expect(potatoes.total_on_hand).toEqual('5');
+    expect(butter.total_on_hand).toEqual('28.75');
   });
 });
