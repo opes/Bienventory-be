@@ -24,7 +24,7 @@ describe('Bienventory-be inventory routes', () => {
       user_id: '12345',
       item_name: 'milk',
       description: 'its milk',
-      total_on_hand: 4,
+      total_on_hand: '4',
       par: 2,
       unit_type: 'gallons',
     };
@@ -44,7 +44,7 @@ describe('Bienventory-be inventory routes', () => {
       user_id: '12345',
       item_name: 'milk',
       description: 'its milk',
-      total_on_hand: 4,
+      total_on_hand: '4',
       par: 2,
       unit_type: 'gallons',
     };
@@ -106,16 +106,16 @@ describe('Bienventory-be inventory routes', () => {
       user_id: '12345',
       item_name: 'milk',
       description: 'its milk',
-      total_on_hand: 4,
+      total_on_hand: '4',
       par: 2,
       unit_type: 'gallons',
     });
 
     const res = await request(app)
       .put(`/api/v1/inventory/${item1.id}`)
-      .send({ total_on_hand: 3 });
+      .send({ total_on_hand: '3' });
 
-    expect(res.body).toEqual({ ...item1, total_on_hand: 3 });
+    expect(res.body).toEqual({ ...item1, total_on_hand: '3' });
   });
 
   it('updates an inventory item by id with PUT', async () => {
