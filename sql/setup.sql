@@ -15,7 +15,7 @@ CREATE TABLE inventory(
     user_id TEXT REFERENCES users(google_id),
     item_name TEXT NOT NULL,
     description TEXT NOT NULL,
-    total_on_hand INTEGER NOT NULL,
+    total_on_hand DECIMAL NOT NULL,
     par INTEGER NOT NULL,
     unit_type TEXT NOT NULL
 );

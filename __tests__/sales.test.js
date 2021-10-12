@@ -59,7 +59,7 @@ describe('Bienventory-be menus routes', () => {
     });
     const sales = {
       menu_id: '1',
-      sales: [{ name: 'hashbrowns', quantity: 2 }, { name: 'mashedpotatoes', quantity: 3 }],
+      sales: [{ name: 'hashbrowns', quantity: '2' }, { name: 'mashedpotatoes', quantity: '3' }],
     };
     const res = await request(app).post('/api/v1/sales').send(sales);
     // expect(twilio.sendText).toHaveBeenCalledTimes(1);
