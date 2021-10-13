@@ -50,4 +50,18 @@ describe('Bienventory-be users routes', () => {
 
     expect(res.body).toEqual({ google_id: '12345', notifications: false, phone_number: '+15038675309' });
   });
+
+  it('deletes a user by Google id', async () => {
+    const newUser = {
+      google_id: '12345',
+      notifications: true,
+      phone_number: '+15038675309'
+    };
+    const user = await User.insert(newUser);
+    const res = await request(app).delete(`/api/v1/users/${user.google_id}`);
+
+    expect(res.body).toEqual({
+      message: 'user deleted'
+    });
+  });
 });
