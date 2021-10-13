@@ -166,4 +166,49 @@ describe('Bienventory-be inventory routes', () => {
       message: `${item1.item_name} has been deleted`,
     });
   });
+
+  it('gets all inventory items for a particular user using GET', async () => {
+    const user1 = await User.insert({
+      google_id: '12345',
+      notifications: true,
+      phone_number: '+15038675309'
+    });
+
+    const user2 = await User.insert({
+      google_id: '678910',
+      notifications: true,
+      phone_number: '+15555555555'
+    });
+
+    const item1 = await Inventory.insert({
+      user_id: '12345',
+      item_name: 'milk',
+      description: 'its milk',
+      total_on_hand: 4,
+      par: 2,
+      unit_type: 'gallons',
+    });
+
+    const item2 = await Inventory.insert({
+      user_id: '12345',
+      item_name: 'potatoes',
+      description: 'wots taters precious',
+      total_on_hand: 10,
+      par: 50,
+      unit_type: 'pounds',
+    });
+
+    const item3 = await Inventory.insert({
+      user_id: '12345',
+      item_name: 'bacon',
+      description: 'thick cut from hilshire farms',
+      total_on_hand: 4,
+      par: 10,
+      unit_type: 'pounds',
+    });
+
+    const res = await request(app).get(`/api/v1/inventory/${user1.google_id}`);
+
+    expect(res.body).toEqual([item1, item2, item3]);
+  });
 });
