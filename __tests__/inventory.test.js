@@ -174,10 +174,19 @@ describe('Bienventory-be inventory routes', () => {
       phone_number: '+15038675309'
     });
 
-    const user2 = await User.insert({
+    await User.insert({
       google_id: '678910',
       notifications: true,
       phone_number: '+15555555555'
+    });
+
+    await Inventory.insert({
+      user_id: '678910',
+      item_name: 'eggs',
+      description: 'large eggs',
+      total_on_hand: 12,
+      par: 2,
+      unit_type: 'count',
     });
 
     const item1 = await Inventory.insert({
@@ -207,7 +216,7 @@ describe('Bienventory-be inventory routes', () => {
       unit_type: 'pounds',
     });
 
-    const res = await request(app).get(`/api/v1/inventory/${user1.google_id}`);
+    const res = await request(app).get(`/api/v1/inventory/userInventory/${user1.google_id}`);
 
     expect(res.body).toEqual([item1, item2, item3]);
   });
