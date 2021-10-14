@@ -38,7 +38,7 @@ describe('Bienventory-be menus routes', () => {
       unit_type: 'pounds',
     });
     const hashbrowns = {
-      inventory_id: '1',
+      user_id: '12345',
       meal_name: 'hashbrowns',
       ingredients: [
         { name: 'potatoes', quantity: 1 },
@@ -49,7 +49,7 @@ describe('Bienventory-be menus routes', () => {
 
     expect(res.body).toEqual({
       id: '1',
-      inventory_id: '1',
+      user_id: '12345',
       meal_name: 'hashbrowns',
       ingredients: [
         JSON.stringify({ name: 'potatoes', quantity: 1 }),
@@ -81,7 +81,7 @@ describe('Bienventory-be menus routes', () => {
       unit_type: 'pounds',
     });
     const hashbrowns = await Menu.insert({
-      inventory_id: '1',
+      user_id: '12345',
       meal_name: 'hashbrowns',
       ingredients: [
         { name: 'potatoes', quantity: 1 },
@@ -115,7 +115,7 @@ describe('Bienventory-be menus routes', () => {
       unit_type: 'pounds',
     });
     const hashbrowns = await Menu.insert({
-      inventory_id: '1',
+      user_id: '12345',
       meal_name: 'hashbrowns',
       ingredients: [
         { name: 'potatoes', quantity: 1 },
@@ -161,7 +161,7 @@ describe('Bienventory-be menus routes', () => {
       unit_type: 'pounds',
     });
     const hashbrowns = await Menu.insert({
-      inventory_id: '1',
+      user_id: '12345',
       meal_name: 'hashbrowns',
       ingredients: [
         { name: 'potatoes', quantity: 1 },
@@ -169,7 +169,7 @@ describe('Bienventory-be menus routes', () => {
       ],
     });
     const mash = await Menu.insert({
-      inventory_id: '2',
+      user_id: '12345',
       meal_name: 'mashed potatoes',
       ingredients: [
         { name: 'potatoes', quantity: 1 },
