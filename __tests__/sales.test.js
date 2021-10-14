@@ -43,7 +43,7 @@ describe('Bienventory-be menus routes', () => {
       unit_type: 'pounds',
     });
     await Menu.insert({
-      inventory_id: '1',
+      user_id: '12345',
       meal_name: 'hashbrowns',
       ingredients: [
         { name: 'potatoes', quantity: 1 },
@@ -51,7 +51,7 @@ describe('Bienventory-be menus routes', () => {
       ],
     });
     await Menu.insert({
-      inventory_id: '2',
+      user_id: '12345',
       meal_name: 'mashedpotatoes',
       ingredients: [
         { name: 'potatoes', quantity: 1 },
@@ -59,7 +59,7 @@ describe('Bienventory-be menus routes', () => {
       ],
     });
     const sales = {
-      menu_id: '1',
+      user_id: '12345',
       sales: [
         { name: 'hashbrowns', quantity: '2' },
         { name: 'mashedpotatoes', quantity: '3' },

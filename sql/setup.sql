@@ -22,7 +22,7 @@ CREATE TABLE inventory(
 
 CREATE TABLE menus(
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    inventory_id BIGINT REFERENCES inventory(id),
+    user_id TEXT REFERENCES users(google_id),
     meal_name TEXT NOT NULL unique,
     ingredients TEXT [] NOT NULL
 );
@@ -34,6 +34,6 @@ CREATE TABLE inventory_menus(
 
 CREATE TABLE sales(
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    menu_id BIGINT REFERENCES menus(id),
+    user_id TEXT REFERENCES users(google_id),
     sales TEXT []
 );
